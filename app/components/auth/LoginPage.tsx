@@ -95,7 +95,7 @@ export function LoginPage({ onLogin }: LoginPageProps) {
                     <div className="w-full border-t" />
                   </div>
                   <div className="relative flex justify-center text-sm">
-                    <span className="bg-white px-2 text-muted-foreground">Or continue with</span>
+                    <span className="px-2 text-muted-foreground">Or continue with</span>
                   </div>
                 </div>
                 <Button type="button" variant="outline" className="w-full">
@@ -131,7 +131,7 @@ export function LoginPage({ onLogin }: LoginPageProps) {
                   <Button
                     type="button"
                     variant="outline"
-                    className="w-full justify-start"
+                    className="w-full h-12 justify-start"
                     onClick={() => handleQuickLogin('sarah@devize.com')}
                   >
                     <div className="flex items-center gap-3">
@@ -147,7 +147,7 @@ export function LoginPage({ onLogin }: LoginPageProps) {
                   <Button
                     type="button"
                     variant="outline"
-                    className="w-full justify-start"
+                    className="w-full h-12 justify-start"
                     onClick={() => handleQuickLogin('alex@devize.com')}
                   >
                     <div className="flex items-center gap-3">

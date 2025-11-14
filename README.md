@@ -1,8 +1,7 @@
 
 # DevSync Product Roadmap
 
-This is a Next.js project for DevSync Product Roadmap. The original design is available at https://www.figma.com/design/NujqM79qxlpSRgQiS3tbxt/DevSync-Product-Roadmap.
-
+This is a Next.js project for Devize.
 ## Tech Stack
 
 - **Next.js 15** - React framework with App Router

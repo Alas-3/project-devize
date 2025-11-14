@@ -139,63 +139,119 @@ export function LandingPage({ onTryDemo, onSignUp }: LandingPageProps) {
           >
             <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl transform rotate-1" />
             <div className="relative bg-white rounded-2xl overflow-hidden shadow-2xl border-8 border-white">
-              <div className="aspect-video bg-gradient-to-br from-slate-50 to-slate-100 flex items-center justify-center relative overflow-hidden">
-                {/* Mock Dashboard UI */}
-                <div className="absolute inset-0 p-6 grid grid-cols-3 gap-4">
-                  {/* Left column - Projects */}
+              <div className="aspect-video bg-slate-50 flex relative overflow-hidden">
+                {/* Actual Dashboard UI Representation */}
+                <div className="absolute inset-0 flex">
+                  {/* Sidebar */}
                   <motion.div
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.6, delay: 0.4 }}
                     viewport={{ once: true }}
-                    className="space-y-3"
+                    className="w-56 bg-slate-900 text-white p-4 space-y-2"
                   >
-                    <div className="h-10 bg-white rounded-lg shadow-sm" />
-                    {[1, 2, 3].map((i) => (
-                      <div key={i} className="bg-white rounded-lg p-3 shadow-sm space-y-2">
-                        <div className="h-4 bg-slate-200 rounded w-3/4" />
-                        <div className="h-2 bg-slate-100 rounded w-full" />
-                        <div className="h-2 bg-blue-200 rounded w-1/2" />
-                      </div>
-                    ))}
-                  </motion.div>
-
-                  {/* Middle column - Tasks */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.5 }}
-                    viewport={{ once: true }}
-                    className="space-y-3"
-                  >
-                    <div className="h-10 bg-white rounded-lg shadow-sm" />
-                    {[1, 2, 3, 4].map((i) => (
-                      <div key={i} className="bg-white rounded-lg p-2 shadow-sm space-y-1">
-                        <div className="h-3 bg-slate-200 rounded w-2/3" />
-                        <div className="h-2 bg-slate-100 rounded w-full" />
-                      </div>
-                    ))}
-                  </motion.div>
-
-                  {/* Right column - Activity */}
-                  <motion.div
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.6, delay: 0.6 }}
-                    viewport={{ once: true }}
-                    className="space-y-3"
-                  >
-                    <div className="h-10 bg-white rounded-lg shadow-sm" />
-                    {[1, 2, 3].map((i) => (
-                      <div key={i} className="bg-white rounded-lg p-2 shadow-sm space-y-1">
-                        <div className="flex items-center gap-2">
-                          <div className="w-6 h-6 bg-purple-200 rounded-full" />
-                          <div className="h-2 bg-slate-200 rounded flex-1" />
+                    <div className="flex items-center gap-2 mb-6">
+                      <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg" />
+                      <span className="text-lg font-semibold">Devize</span>
+                    </div>
+                    <div className="space-y-1 text-sm">
+                      {['Dashboard', 'Projects', 'Teams', 'Activity', 'Analytics'].map((item, i) => (
+                        <div
+                          key={item}
+                          className={`px-3 py-2 rounded-lg ${i === 0 ? 'bg-blue-600' : 'text-slate-400 hover:bg-slate-800'}`}
+                        >
+                          {item}
                         </div>
-                        <div className="h-2 bg-slate-100 rounded w-3/4" />
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </motion.div>
+
+                  {/* Main Content Area */}
+                  <div className="flex-1 flex flex-col">
+                    {/* Top Navbar */}
+                    <motion.div
+                      initial={{ opacity: 0, y: -20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: 0.5 }}
+                      viewport={{ once: true }}
+                      className="h-14 bg-white border-b flex items-center justify-between px-6"
+                    >
+                      <div className="text-lg font-semibold">Dashboard</div>
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 bg-blue-100 rounded-full" />
+                      </div>
+                    </motion.div>
+
+                    {/* Dashboard Content */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: 0.6 }}
+                      viewport={{ once: true }}
+                      className="flex-1 p-6 overflow-hidden"
+                    >
+                      <div className="grid grid-cols-3 gap-4 h-full">
+                        {/* Stats Cards */}
+                        <div className="col-span-3 grid grid-cols-3 gap-4 h-24">
+                          {[
+                            { label: 'Active Projects', value: '12', color: 'blue' },
+                            { label: 'Tasks Completed', value: '48', color: 'green' },
+                            { label: 'Team Members', value: '8', color: 'purple' }
+                          ].map((stat) => (
+                            <div key={stat.label} className="bg-white rounded-lg shadow-sm p-4 border">
+                              <div className="text-xs text-slate-500 mb-1">{stat.label}</div>
+                              <div className={`text-2xl font-bold text-${stat.color}-600`}>{stat.value}</div>
+                            </div>
+                          ))}
+                        </div>
+
+                        {/* Recent Projects */}
+                        <div className="col-span-2 bg-white rounded-lg shadow-sm border p-4">
+                          <div className="text-sm font-semibold mb-3">Recent Projects</div>
+                          <div className="space-y-2">
+                            {[
+                              { name: 'Mobile App Redesign', progress: 75, status: 'In Progress' },
+                              { name: 'API Integration', progress: 90, status: 'Review' },
+                              { name: 'Dashboard Analytics', progress: 45, status: 'In Progress' }
+                            ].map((project, i) => (
+                              <div key={i} className="flex items-center gap-3 p-2 hover:bg-slate-50 rounded">
+                                <div className="w-2 h-2 rounded-full bg-blue-500" />
+                                <div className="flex-1">
+                                  <div className="text-xs font-medium">{project.name}</div>
+                                  <div className="w-full bg-slate-200 rounded-full h-1 mt-1">
+                                    <div className="bg-blue-500 h-1 rounded-full" style={{ width: `${project.progress}%` }} />
+                                  </div>
+                                </div>
+                                <div className="text-xs text-slate-500">{project.status}</div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Activity Feed */}
+                        <div className="bg-white rounded-lg shadow-sm border p-4">
+                          <div className="text-sm font-semibold mb-3">Recent Activity</div>
+                          <div className="space-y-3">
+                            {[
+                              { user: 'JD', action: 'Committed to main', time: '2m ago' },
+                              { user: 'AS', action: 'Completed task', time: '15m ago' },
+                              { user: 'MK', action: 'Added comment', time: '1h ago' }
+                            ].map((activity, i) => (
+                              <div key={i} className="flex items-start gap-2">
+                                <div className="w-6 h-6 bg-gradient-to-br from-blue-400 to-purple-400 rounded-full text-white text-xs flex items-center justify-center font-semibold">
+                                  {activity.user}
+                                </div>
+                                <div className="flex-1">
+                                  <div className="text-xs">{activity.action}</div>
+                                  <div className="text-xs text-slate-400">{activity.time}</div>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -273,7 +329,7 @@ export function LandingPage({ onTryDemo, onSignUp }: LandingPageProps) {
         >
           <h2 className="text-4xl md:text-5xl mb-4">Ready to sync your team?</h2>
           <p className="text-xl opacity-90 mb-8">
-            Join teams who've stopped losing context between tools
+            Join teams who&apos;ve stopped losing context between tools
           </p>
           <div className="flex items-center justify-center gap-4 flex-wrap">
             <Button

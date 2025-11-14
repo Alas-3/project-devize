@@ -24,7 +24,7 @@ export function Navbar({ currentUser, onLogout }: NavbarProps) {
   const notifications = 5;
 
   return (
-    <header className="border-b bg-white sticky top-0 z-50">
+    <header className="border-b border-slate-200 bg-white sticky top-0 z-50 shadow-sm">
       <div className="flex items-center gap-2 sm:gap-4 px-3 sm:px-6 h-14 sm:h-16">
         {/* Spacer for mobile hamburger menu - only on mobile */}
         <div className="lg:hidden w-9" />
@@ -52,10 +52,10 @@ export function Navbar({ currentUser, onLogout }: NavbarProps) {
         {/* Search - Hidden on mobile */}
         <div className="hidden md:flex flex-1 max-w-xl">
           <div className="relative w-full">
-            <Search className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            <Search className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
             <Input
               placeholder="Search tasks, commits, or discussions..."
-              className="pl-8 sm:pl-9 bg-muted/50 h-9 sm:h-10 text-sm"
+              className="pl-8 sm:pl-9 bg-slate-50 h-9 sm:h-10 text-sm border-slate-200 focus:bg-white"
             />
           </div>
         </div>
@@ -66,12 +66,11 @@ export function Navbar({ currentUser, onLogout }: NavbarProps) {
         {/* Right side */}
         <div className="flex items-center gap-1 sm:gap-2">
           {/* Notifications */}
-          <Button variant="ghost" size="icon" className="relative w-9 h-9 sm:w-10 sm:h-10">
+          <Button variant="ghost" size="icon" className="relative w-9 h-9 sm:w-10 sm:h-10 hover:bg-slate-100">
             <Bell className="w-4 h-4 sm:w-5 sm:h-5" />
             {notifications > 0 && (
               <Badge
-                variant="destructive"
-                className="absolute -top-1 -right-1 w-4 h-4 sm:w-5 sm:h-5 rounded-full p-0 flex items-center justify-center text-xs"
+                className="absolute -top-1 -right-1 w-5 h-5 rounded-full p-0 flex items-center justify-center text-xs bg-gradient-to-r from-red-500 to-red-600 text-white border-2 border-white shadow-md animate-pulse"
               >
                 {notifications}
               </Badge>

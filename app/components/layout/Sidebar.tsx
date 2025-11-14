@@ -73,7 +73,7 @@ export function Sidebar({
 
       {/* Sidebar */}
       <aside className={cn(
-        "w-64 border-r bg-white flex flex-col fixed lg:sticky top-0 h-screen z-40 transition-transform duration-300",
+        "w-64 border-r border-slate-200 bg-white flex flex-col fixed lg:sticky top-0 h-screen z-40 transition-transform duration-300 shadow-sm",
         isMobileOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
       )}>
         {/* Account section at the very top */}
@@ -89,8 +89,8 @@ export function Sidebar({
               className={cn(
                 'w-full flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-200 h-[52px]',
                 isHoveringAccount
-                  ? 'bg-destructive text-destructive-foreground hover:bg-destructive/90 cursor-pointer'
-                  : 'bg-muted/50 hover:bg-muted cursor-default'
+                  ? 'bg-gradient-to-r from-red-600 to-red-700 text-white shadow-md cursor-pointer'
+                  : 'bg-slate-50 hover:bg-slate-100 border border-slate-200 cursor-default'
               )}
             >
               <div className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center flex-shrink-0">
@@ -119,7 +119,7 @@ export function Sidebar({
         {/* Quick Actions - Only show New Project for PMs, remove New Task from sidebar */}
         {onNewProject && (
           <div className="p-3 sm:p-4 border-b">
-            <Button className="w-full justify-start text-sm sm:text-base" size="sm" onClick={() => {
+            <Button className="w-full justify-start text-sm sm:text-base shadow-md hover:shadow-lg" size="sm" onClick={() => {
               onNewProject();
               setIsMobileOpen(false);
             }}>
@@ -138,13 +138,19 @@ export function Sidebar({
                 key={item.id}
                 onClick={() => handleNavClick(item.id)}
                 className={cn(
-                  'w-full flex items-center gap-3 px-3 py-2 rounded-lg transition-colors text-sm sm:text-base',
+                  'w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 text-sm sm:text-base font-medium group relative',
                   isActive
-                    ? 'bg-primary text-primary-foreground'
-                    : 'text-muted-foreground hover:bg-muted hover:text-foreground'
+                    ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-md'
+                    : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
                 )}
               >
-                <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
+                {isActive && (
+                  <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-blue-800 rounded-r-full" />
+                )}
+                <Icon className={cn(
+                  "w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-200",
+                  isActive ? "scale-110" : "group-hover:scale-105"
+                )} />
                 <span>{item.label}</span>
               </button>
             );
